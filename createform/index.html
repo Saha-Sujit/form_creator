@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create Form</h1>
+        <div class="formContainer">
+            <div class="formCreate">
+                <span class="fillformerror"></span>
+                <!-- <input type="text" placeholder="Form Name" name="formName" class="formName" value="" onchange="handleChange()"> -->
+                <input type="text" placeholder="Form Name" name="formName" class="formName" onchange="handleFormNameChange()">
+                <input type="text" placeholder="Button Name" name="buttonName" class="buttonName" onchange="handleFormNameChange()">
+                <div class="visibleForm">
+                    <input type="text" placeholder="Field Name" name="fieldName" class="fieldName">
+                    <select name="selectType" class="selectedType" onchange="handleSelectedChange()">
+                    </select>
+                    <div class="anotherForm">
+                        <input type="text" name="checkRadio" class="checkRadio">
+                        <button onclick="handleAddCheckRadio()"></button>
+                    </div>
+                    <button onclick="handleAddFields()">Add Field</button>
+                </div>
+                <button onclick="handleSubmit()">Submit</button>
+            </div>
+            <div class="formCreate">
+                <h1 class="renderFormName"></h1>
+                <div class="formCreate formDemo"></div>
+                <button class="renderFormButton"></button>
+            </div>
+            <!-- <button><img src="../assets/images/triangle_up.svg" alt=""></button> -->
+        </div>
+    </div>
+</body>
+<script src="./createform.js"></script>
+
+</html>
