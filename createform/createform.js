@@ -11,23 +11,6 @@ var radioArray = [];
 // stores checkbox array if it is selected
 var checkboxArray = [];
 
-//select dropdown list items showing using below array
-// var inputTypeArray = [
-//   "select",
-//   "text",
-//   "email",
-//   "password",
-//   "number",
-//   "checkbox",
-//   "radio",
-//   "month",
-//   "time",
-//   "week",
-//   "date",
-//   "datetime-local",
-//   "tel",
-// ];
-
 // runs initially
 var selectedType = document.querySelector(".selectedType");
 inputTypeArray.map((typeArray) => {
