@@ -67,7 +67,7 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
 };
 
 // function to render the form
-export var renderForm = (formFieldsArray) => {
+var renderForm = (formFieldsArray) => {
   var divForm = document.querySelector(".formDemo");
   removeAllChildNodes(divForm);
   var divCheckBox = document.createElement("div");
@@ -76,3 +76,5 @@ export var renderForm = (formFieldsArray) => {
     commonRenderForm(dat, divForm, divCheckBox, divRadioBox);
   });
 };
+
+export { renderForm };

@@ -1,5 +1,5 @@
 //select dropdown list items showing using below array
-export var inputTypeArray = [
+var inputTypeArray = [
   "select",
   "text",
   "email",
@@ -14,3 +14,5 @@ export var inputTypeArray = [
   "datetime-local",
   "tel",
 ];
+
+export { inputTypeArray };

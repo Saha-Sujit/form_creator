@@ -144,8 +144,6 @@ var handleAddFields = () => {
     fieldId: generateUniqueId(),
     fieldName: fieldName.toLowerCase().split(" ").join("_"),
     fieldType: selectedType,
-    // checkBoxValues: checkboxArray,
-    // radioValues: radioArray,
   };
 
   if (selectedType === "checkbox") {
