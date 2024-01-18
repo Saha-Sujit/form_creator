@@ -18,29 +18,27 @@
             <div class="formCreate">
                 <span class="fillformerror"></span>
                 <!-- <input type="text" placeholder="Form Name" name="formName" class="formName" value="" onchange="handleChange()"> -->
-                <input type="text" placeholder="Form Name" name="formName" class="formName" onchange="handleFormNameChange()">
-                <input type="text" placeholder="Button Name" name="buttonName" class="buttonName" onchange="handleFormNameChange()">
+                <input type="text" placeholder="Form Name" name="formName" class="formName">
+                <input type="text" placeholder="Button Name" name="buttonName" class="buttonName">
                 <div class="visibleForm">
                     <input type="text" placeholder="Field Name" name="fieldName" class="fieldName">
-                    <select name="selectType" class="selectedType" onchange="handleSelectedChange()">
+                    <select name="selectType" class="selectedType">
                     </select>
                     <div class="anotherForm">
                         <input type="text" name="checkRadio" class="checkRadio">
-                        <button onclick="handleAddCheckRadio()"></button>
+                        <button class="handleAddCheckRadio"></button>
                     </div>
-                    <button onclick="handleAddFields()">Add Field</button>
+                    <button class="handleAddFields">Add Field</button>
                 </div>
-                <button onclick="handleSubmit()">Submit</button>
+                <button class="handleSubmit">Submit</button>
             </div>
             <div class="formCreate">
                 <h1 class="renderFormName"></h1>
                 <div class="formCreate formDemo"></div>
                 <button class="renderFormButton"></button>
             </div>
-            <!-- <button><img src="../assets/images/triangle_up.svg" alt=""></button> -->
         </div>
     </div>
 </body>
-<script src="./createform.js"></script>
-
+<script src="./createform.js" type="module"></script>
 </html>
