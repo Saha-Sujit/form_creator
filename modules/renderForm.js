@@ -9,7 +9,9 @@ const removeAllChildNodes = (parent) => {
 var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
   if (dat.fieldType === "checkbox") {
     var inputFieldPara = document.createElement("p");
-    inputFieldPara.innerText = dat.fieldName;
+    inputFieldPara.innerText =
+      dat.fieldName.charAt(0).toUpperCase() +
+      dat.fieldName.slice(1).split("_").join(" ");
     divForm.append(inputFieldPara);
     dat.checkBoxValues.map((checkBoxValue) => {
       var inputField = document.createElement("input");
@@ -26,13 +28,17 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
         "for",
         `${checkBoxValue.checkboxName.split(" ").join("")}-${dat.fieldType}`
       );
-      inputFieldLabel.innerText = checkBoxValue.checkboxName;
+      inputFieldLabel.innerText =
+        checkBoxValue.checkboxName.charAt(0).toUpperCase() +
+        dat.fieldName.slice(1).split("_").join(" ");
       divCheckBox.append(inputField, inputFieldLabel);
       divForm.append(divCheckBox);
     });
   } else if (dat.fieldType === "radio") {
     var inputFieldPara = document.createElement("p");
-    inputFieldPara.innerText = dat.fieldName;
+    inputFieldPara.innerText =
+      dat.fieldName.charAt(0).toUpperCase() +
+      dat.fieldName.slice(1).split("_").join(" ");
     divForm.append(inputFieldPara);
     dat.radioValues.map((radioValue) => {
       var inputField = document.createElement("input");
@@ -49,7 +55,9 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
         "for",
         `${radioValue.radioName.split(" ").join("")}-${dat.fieldType}`
       );
-      inputFieldLabel.innerText = radioValue.radioName;
+      inputFieldLabel.innerText =
+        radioValue.radioName.charAt(0).toUpperCase() +
+        dat.fieldName.slice(1).split("_").join(" ");
       divRadioBox.append(inputField, inputFieldLabel);
       divForm.append(divRadioBox);
     });
@@ -57,10 +65,16 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
     var inputField = document.createElement("input");
     var inputFieldLabel = document.createElement("label");
     inputFieldLabel.setAttribute("for", dat.fieldName.split(" ").join(""));
-    inputFieldLabel.innerText = dat.fieldName;
+    inputFieldLabel.innerText =
+      dat.fieldName.charAt(0).toUpperCase() +
+      dat.fieldName.slice(1).split("_").join(" ");
     inputField.setAttribute("type", dat.fieldType);
     inputField.setAttribute("class", dat.fieldName);
-    inputField.setAttribute("placeholder", dat.fieldName.split("_").join(" "));
+    inputField.setAttribute(
+      "placeholder",
+      dat.fieldName.charAt(0).toUpperCase() +
+        dat.fieldName.slice(1).split("_").join(" ")
+    );
     inputField.setAttribute("name", dat.fieldName);
     divForm.append(inputFieldLabel, inputField);
   }
