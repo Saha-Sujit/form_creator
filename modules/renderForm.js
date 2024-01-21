@@ -30,7 +30,7 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
       );
       inputFieldLabel.innerText =
         checkBoxValue.checkboxName.charAt(0).toUpperCase() +
-        dat.fieldName.slice(1).split("_").join(" ");
+        checkBoxValue.checkboxName.slice(1).split("_").join(" ");
       divCheckBox.append(inputField, inputFieldLabel);
       divForm.append(divCheckBox);
     });
@@ -57,7 +57,7 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
       );
       inputFieldLabel.innerText =
         radioValue.radioName.charAt(0).toUpperCase() +
-        dat.fieldName.slice(1).split("_").join(" ");
+        radioValue.radioName.slice(1).split("_").join(" ");
       divRadioBox.append(inputField, inputFieldLabel);
       divForm.append(divRadioBox);
     });
