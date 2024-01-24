@@ -84,5 +84,23 @@ h1 {
 
 /* render form and button name css end*/
 
+/* inputDivButton css of render form starts */
+
+.inputDivButton {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.inputDivButton div {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+}
+
+/* inputDivButton css of render form ends */
+
 /* form container end */
 

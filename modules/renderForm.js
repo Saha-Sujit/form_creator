@@ -1,3 +1,5 @@
+// import triangleImage from "../assets/images/triangle_up.svg";
+
 //function to remove all child nodes inside div
 const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
@@ -62,6 +64,14 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
       divForm.append(divRadioBox);
     });
   } else {
+    var inputDivButton = document.createElement("div");
+    var editDeleteButtons = document.createElement("div");
+    var editButton = document.createElement("img");
+    var deleteButton = document.createElement("img");
+    var arrowButtons = document.createElement("div");
+    var arrowUp = document.createElement("img");
+    var arrowDown = document.createElement("img");
+    var inputDiv = document.createElement("div");
     var inputField = document.createElement("input");
     var inputFieldLabel = document.createElement("label");
     inputFieldLabel.setAttribute("for", dat.fieldName.split(" ").join(""));
@@ -76,7 +86,16 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
         dat.fieldName.slice(1).split("_").join(" ")
     );
     inputField.setAttribute("name", dat.fieldName);
-    divForm.append(inputFieldLabel, inputField);
+    inputDivButton.setAttribute("class", "inputDivButton");
+    editButton.setAttribute("src", "../assets/images/edit.svg");
+    deleteButton.setAttribute("src", "../assets/images/close.svg");
+    arrowUp.setAttribute("src", "../assets/images/triangle_up.svg");
+    arrowDown.setAttribute("src", "../assets/images/triangle_up.svg");
+    editDeleteButtons.append(editButton, deleteButton);
+    arrowButtons.append(arrowUp, arrowDown);
+    inputDiv.append(inputFieldLabel, inputField);
+    inputDivButton.append(editDeleteButtons, inputDiv, arrowButtons);
+    divForm.append(inputDivButton);
   }
 };
 
