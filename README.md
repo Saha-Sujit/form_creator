@@ -8,4 +8,4 @@ After adding all form fields you can save them in local storage and then use the
 
 You can also edit delete form values. Also, you can edit or delete form structure and forms.
 
-You can go through this Live Demo:- https://formscreator.netlify.app/
+You can go through this Live Demo:- [Form Creator](https://formscreator.netlify.app/){:target="_blank" rel="noopener"}
