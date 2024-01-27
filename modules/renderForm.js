@@ -1,5 +1,10 @@
 // import triangleImage from "../assets/images/triangle_up.svg";
 
+// handle up adown arrow clicks to update the form field array
+const handleArrowUpDown = (arrowUpDown) => {
+  alert(`${arrowUpDown} clicked`);
+};
+
 //function to remove all child nodes inside div
 const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
@@ -7,62 +12,68 @@ const removeAllChildNodes = (parent) => {
   }
 };
 
+const renderCheckboxRadio = (dat, divForm, divCheckBox, checkBoxValues) => {
+  var inputFieldPara = document.createElement("p");
+  inputFieldPara.innerText =
+    dat.fieldName.charAt(0).toUpperCase() +
+    dat.fieldName.slice(1).split("_").join(" ");
+  divForm.append(inputFieldPara);
+  checkBoxValues.map((checkBoxValue) => {
+    console.log("radioName", typeof checkBoxValue.checkboxName === "undefined");
+    var inputField = document.createElement("input");
+    var inputFieldLabel = document.createElement("label");
+    inputField.setAttribute("type", dat.fieldType);
+    inputField.setAttribute(
+      "id",
+      `${
+        typeof checkBoxValue.checkboxName === "undefined"
+          ? checkBoxValue.radioName.split(" ").join("")
+          : checkBoxValue.checkboxName.split(" ").join("")
+      }-${dat.fieldType}`
+    );
+    inputField.setAttribute(
+      "class",
+      typeof checkBoxValue.checkboxName === "undefined"
+        ? checkBoxValue.radioName
+        : checkBoxValue.checkboxName
+    );
+    inputField.setAttribute(
+      "name",
+      typeof checkBoxValue.checkboxName === "undefined"
+        ? dat.fieldName
+        : checkBoxValue.checkboxName
+    );
+    inputField.setAttribute(
+      "value",
+      typeof checkBoxValue.checkboxName === "undefined"
+        ? checkBoxValue.radioName
+        : checkBoxValue.checkboxName
+    );
+    inputFieldLabel.setAttribute(
+      "for",
+      `${
+        typeof checkBoxValue.checkboxName === "undefined"
+          ? checkBoxValue.radioName.split(" ").join("")
+          : checkBoxValue.checkboxName.split(" ").join("")
+      }-${dat.fieldType}`
+    );
+    inputFieldLabel.innerText =
+      typeof checkBoxValue.checkboxName === "undefined"
+        ? checkBoxValue.radioName.charAt(0).toUpperCase() +
+          checkBoxValue.radioName.slice(1).split("_").join(" ")
+        : checkBoxValue.checkboxName.charAt(0).toUpperCase() +
+          checkBoxValue.checkboxName.slice(1).split("_").join(" ");
+    divCheckBox.append(inputField, inputFieldLabel);
+    divForm.append(divCheckBox);
+  });
+};
+
 // common funcion to render form
 var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
   if (dat.fieldType === "checkbox") {
-    var inputFieldPara = document.createElement("p");
-    inputFieldPara.innerText =
-      dat.fieldName.charAt(0).toUpperCase() +
-      dat.fieldName.slice(1).split("_").join(" ");
-    divForm.append(inputFieldPara);
-    dat.checkBoxValues.map((checkBoxValue) => {
-      var inputField = document.createElement("input");
-      var inputFieldLabel = document.createElement("label");
-      inputField.setAttribute("type", dat.fieldType);
-      inputField.setAttribute(
-        "id",
-        `${checkBoxValue.checkboxName.split(" ").join("")}-${dat.fieldType}`
-      );
-      inputField.setAttribute("class", checkBoxValue.checkboxName);
-      inputField.setAttribute("name", checkBoxValue.checkboxName);
-      inputField.setAttribute("value", checkBoxValue.checkboxName);
-      inputFieldLabel.setAttribute(
-        "for",
-        `${checkBoxValue.checkboxName.split(" ").join("")}-${dat.fieldType}`
-      );
-      inputFieldLabel.innerText =
-        checkBoxValue.checkboxName.charAt(0).toUpperCase() +
-        checkBoxValue.checkboxName.slice(1).split("_").join(" ");
-      divCheckBox.append(inputField, inputFieldLabel);
-      divForm.append(divCheckBox);
-    });
+    renderCheckboxRadio(dat, divForm, divCheckBox, dat.checkBoxValues);
   } else if (dat.fieldType === "radio") {
-    var inputFieldPara = document.createElement("p");
-    inputFieldPara.innerText =
-      dat.fieldName.charAt(0).toUpperCase() +
-      dat.fieldName.slice(1).split("_").join(" ");
-    divForm.append(inputFieldPara);
-    dat.radioValues.map((radioValue) => {
-      var inputField = document.createElement("input");
-      var inputFieldLabel = document.createElement("label");
-      inputField.setAttribute("type", dat.fieldType);
-      inputField.setAttribute(
-        "id",
-        `${radioValue.radioName.split(" ").join("")}-${dat.fieldType}`
-      );
-      inputField.setAttribute("class", radioValue.radioName);
-      inputField.setAttribute("name", dat.fieldName);
-      inputField.setAttribute("value", radioValue.radioName);
-      inputFieldLabel.setAttribute(
-        "for",
-        `${radioValue.radioName.split(" ").join("")}-${dat.fieldType}`
-      );
-      inputFieldLabel.innerText =
-        radioValue.radioName.charAt(0).toUpperCase() +
-        radioValue.radioName.slice(1).split("_").join(" ");
-      divRadioBox.append(inputField, inputFieldLabel);
-      divForm.append(divRadioBox);
-    });
+    renderCheckboxRadio(dat, divForm, divRadioBox, dat.radioValues);
   } else {
     var inputDivButton = document.createElement("div");
     var editDeleteButtons = document.createElement("div");
@@ -90,7 +101,9 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
     editButton.setAttribute("src", "../assets/images/edit.svg");
     deleteButton.setAttribute("src", "../assets/images/close.svg");
     arrowUp.setAttribute("src", "../assets/images/triangle_up.svg");
+    arrowUp.addEventListener("click", () => handleArrowUpDown("arrowUp"));
     arrowDown.setAttribute("src", "../assets/images/triangle_up.svg");
+    arrowDown.addEventListener("click", () => handleArrowUpDown("arrowDown"));
     editDeleteButtons.append(editButton, deleteButton);
     arrowButtons.append(arrowUp, arrowDown);
     inputDiv.append(inputFieldLabel, inputField);
