@@ -1,6 +1,6 @@
 // import triangleImage from "../assets/images/triangle_up.svg";
 
-// handle up adown arrow clicks to update the form field array
+// handle up down arrow clicks to update the form field array
 const handleArrowUpDown = (arrowUpDown) => {
   alert(`${arrowUpDown} clicked`);
 };
@@ -12,60 +12,84 @@ const removeAllChildNodes = (parent) => {
   }
 };
 
-const renderCheckboxRadio = (dat, divForm, divCheckBox, checkBoxValues) => {
+// optimized render function specially for checkbox and radio in one function
+const renderCheckboxRadio = (
+  dat,
+  divForm,
+  divCheckBox,
+  checkBoxRadioValues
+) => {
   var inputFieldPara = document.createElement("p");
+  var inputDivButton = document.createElement("div");
+  var editDeleteButtons = document.createElement("div");
+  var editButton = document.createElement("img");
+  var deleteButton = document.createElement("img");
+  var arrowButtons = document.createElement("div");
+  var arrowUp = document.createElement("img");
+  var arrowDown = document.createElement("img");
+  var inputDiv = document.createElement("div");
   inputFieldPara.innerText =
     dat.fieldName.charAt(0).toUpperCase() +
     dat.fieldName.slice(1).split("_").join(" ");
-  divForm.append(inputFieldPara);
-  checkBoxValues.map((checkBoxValue) => {
-    console.log("radioName", typeof checkBoxValue.checkboxName === "undefined");
+  checkBoxRadioValues.map((checkRadioBoxValue) => {
     var inputField = document.createElement("input");
     var inputFieldLabel = document.createElement("label");
     inputField.setAttribute("type", dat.fieldType);
     inputField.setAttribute(
       "id",
       `${
-        typeof checkBoxValue.checkboxName === "undefined"
-          ? checkBoxValue.radioName.split(" ").join("")
-          : checkBoxValue.checkboxName.split(" ").join("")
+        typeof checkRadioBoxValue.checkboxName === "undefined"
+          ? checkRadioBoxValue.radioName.split(" ").join("")
+          : checkRadioBoxValue.checkboxName.split(" ").join("")
       }-${dat.fieldType}`
     );
     inputField.setAttribute(
       "class",
-      typeof checkBoxValue.checkboxName === "undefined"
-        ? checkBoxValue.radioName
-        : checkBoxValue.checkboxName
+      typeof checkRadioBoxValue.checkboxName === "undefined"
+        ? checkRadioBoxValue.radioName
+        : checkRadioBoxValue.checkboxName
     );
     inputField.setAttribute(
       "name",
-      typeof checkBoxValue.checkboxName === "undefined"
+      typeof checkRadioBoxValue.checkboxName === "undefined"
         ? dat.fieldName
-        : checkBoxValue.checkboxName
+        : checkRadioBoxValue.checkboxName
     );
     inputField.setAttribute(
       "value",
-      typeof checkBoxValue.checkboxName === "undefined"
-        ? checkBoxValue.radioName
-        : checkBoxValue.checkboxName
+      typeof checkRadioBoxValue.checkboxName === "undefined"
+        ? checkRadioBoxValue.radioName
+        : checkRadioBoxValue.checkboxName
     );
     inputFieldLabel.setAttribute(
       "for",
       `${
-        typeof checkBoxValue.checkboxName === "undefined"
-          ? checkBoxValue.radioName.split(" ").join("")
-          : checkBoxValue.checkboxName.split(" ").join("")
+        typeof checkRadioBoxValue.checkboxName === "undefined"
+          ? checkRadioBoxValue.radioName.split(" ").join("")
+          : checkRadioBoxValue.checkboxName.split(" ").join("")
       }-${dat.fieldType}`
     );
     inputFieldLabel.innerText =
-      typeof checkBoxValue.checkboxName === "undefined"
-        ? checkBoxValue.radioName.charAt(0).toUpperCase() +
-          checkBoxValue.radioName.slice(1).split("_").join(" ")
-        : checkBoxValue.checkboxName.charAt(0).toUpperCase() +
-          checkBoxValue.checkboxName.slice(1).split("_").join(" ");
+      typeof checkRadioBoxValue.checkboxName === "undefined"
+        ? checkRadioBoxValue.radioName.charAt(0).toUpperCase() +
+          checkRadioBoxValue.radioName.slice(1).split("_").join(" ")
+        : checkRadioBoxValue.checkboxName.charAt(0).toUpperCase() +
+          checkRadioBoxValue.checkboxName.slice(1).split("_").join(" ");
+
     divCheckBox.append(inputField, inputFieldLabel);
-    divForm.append(divCheckBox);
   });
+  inputDiv.append(inputFieldPara, divCheckBox);
+  inputDivButton.setAttribute("class", "inputDivButton");
+  editButton.setAttribute("src", "../assets/images/edit.svg");
+  deleteButton.setAttribute("src", "../assets/images/close.svg");
+  arrowUp.setAttribute("src", "../assets/images/triangle_up.svg");
+  arrowUp.addEventListener("click", () => handleArrowUpDown("arrowUp"));
+  arrowDown.setAttribute("src", "../assets/images/triangle_up.svg");
+  arrowDown.addEventListener("click", () => handleArrowUpDown("arrowDown"));
+  editDeleteButtons.append(editButton, deleteButton);
+  arrowButtons.append(arrowUp, arrowDown);
+  inputDivButton.append(editDeleteButtons, inputDiv, arrowButtons);
+  divForm.append(inputDivButton);
 };
 
 // common funcion to render form
