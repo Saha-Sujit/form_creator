@@ -94,6 +94,13 @@ h1 {
     gap: 8px;
 }
 
+.inputDivCheckRadioButton {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
 .inputDivButton div {
     display: flex;
     justify-content: center;
@@ -102,21 +109,30 @@ h1 {
     gap: 2px;
 }
 
-.inputDivButton div:nth-child(2), .inputDivButton div:nth-child(2) input {
+.inputDivCheckRadioButton {
+    margin-bottom: 10px;
+}
+
+.inputDivCheckRadioButton input {
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
+.inputDivButton div:nth-child(2), .inputDivButton div:nth-child(2) input, .inputDivCheckRadioButton div:nth-child(2) {
     width: 100%;
 }
 
-.inputDivButton img {
+.inputDivButton img, .inputDivCheckRadioButton img {
     width: 14px;
     opacity: 50%;
     cursor: pointer;
 }
 
-.inputDivButton img:hover {
+.inputDivButton img:hover, .inputDivCheckRadioButton img:hover {
     opacity: 100%;
 }
 
-.inputDivButton div:last-of-type img:last-of-type {
+.inputDivButton div:last-of-type img:last-of-type, .inputDivCheckRadioButton div:last-of-type img:last-of-type {
     rotate: 180deg;
 }
 

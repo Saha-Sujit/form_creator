@@ -1,8 +1,8 @@
 // import triangleImage from "../assets/images/triangle_up.svg";
 
 // handle up down arrow clicks to update the form field array
-const handleArrowUpDown = (arrowUpDown) => {
-  alert(`${arrowUpDown} clicked`);
+const handleArrowUpDown = (arrowUpDown, index) => {
+  alert(`${arrowUpDown} clicked and your index is ${index}`);
 };
 
 //function to remove all child nodes inside div
@@ -17,7 +17,8 @@ const renderCheckboxRadio = (
   dat,
   divForm,
   divCheckBox,
-  checkBoxRadioValues
+  checkBoxRadioValues,
+  index
 ) => {
   var inputFieldPara = document.createElement("p");
   var inputDivButton = document.createElement("div");
@@ -32,6 +33,7 @@ const renderCheckboxRadio = (
     dat.fieldName.charAt(0).toUpperCase() +
     dat.fieldName.slice(1).split("_").join(" ");
   checkBoxRadioValues.map((checkRadioBoxValue) => {
+    var inputRadioChecboxDivs = document.createElement("div");
     var inputField = document.createElement("input");
     var inputFieldLabel = document.createElement("label");
     inputField.setAttribute("type", dat.fieldType);
@@ -61,6 +63,8 @@ const renderCheckboxRadio = (
         ? checkRadioBoxValue.radioName
         : checkRadioBoxValue.checkboxName
     );
+
+    inputField.setAttribute("disabled", true);
     inputFieldLabel.setAttribute(
       "for",
       `${
@@ -75,17 +79,19 @@ const renderCheckboxRadio = (
           checkRadioBoxValue.radioName.slice(1).split("_").join(" ")
         : checkRadioBoxValue.checkboxName.charAt(0).toUpperCase() +
           checkRadioBoxValue.checkboxName.slice(1).split("_").join(" ");
-
-    divCheckBox.append(inputField, inputFieldLabel);
+    inputRadioChecboxDivs.append(inputField, inputFieldLabel);
+    divCheckBox.append(inputRadioChecboxDivs);
   });
   inputDiv.append(inputFieldPara, divCheckBox);
-  inputDivButton.setAttribute("class", "inputDivButton");
+  inputDivButton.setAttribute("class", "inputDivCheckRadioButton");
   editButton.setAttribute("src", "../assets/images/edit.svg");
   deleteButton.setAttribute("src", "../assets/images/close.svg");
   arrowUp.setAttribute("src", "../assets/images/triangle_up.svg");
-  arrowUp.addEventListener("click", () => handleArrowUpDown("arrowUp"));
+  arrowUp.addEventListener("click", () => handleArrowUpDown("arrowUp", index));
   arrowDown.setAttribute("src", "../assets/images/triangle_up.svg");
-  arrowDown.addEventListener("click", () => handleArrowUpDown("arrowDown"));
+  arrowDown.addEventListener("click", () =>
+    handleArrowUpDown("arrowDown", index)
+  );
   editDeleteButtons.append(editButton, deleteButton);
   arrowButtons.append(arrowUp, arrowDown);
   inputDivButton.append(editDeleteButtons, inputDiv, arrowButtons);
@@ -93,11 +99,11 @@ const renderCheckboxRadio = (
 };
 
 // common funcion to render form
-var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
+var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox, index) => {
   if (dat.fieldType === "checkbox") {
-    renderCheckboxRadio(dat, divForm, divCheckBox, dat.checkBoxValues);
+    renderCheckboxRadio(dat, divForm, divCheckBox, dat.checkBoxValues, index);
   } else if (dat.fieldType === "radio") {
-    renderCheckboxRadio(dat, divForm, divRadioBox, dat.radioValues);
+    renderCheckboxRadio(dat, divForm, divRadioBox, dat.radioValues, index);
   } else {
     var inputDivButton = document.createElement("div");
     var editDeleteButtons = document.createElement("div");
@@ -121,13 +127,18 @@ var commonRenderForm = (dat, divForm, divCheckBox, divRadioBox) => {
         dat.fieldName.slice(1).split("_").join(" ")
     );
     inputField.setAttribute("name", dat.fieldName);
+    inputField.setAttribute("disabled", true);
     inputDivButton.setAttribute("class", "inputDivButton");
     editButton.setAttribute("src", "../assets/images/edit.svg");
     deleteButton.setAttribute("src", "../assets/images/close.svg");
     arrowUp.setAttribute("src", "../assets/images/triangle_up.svg");
-    arrowUp.addEventListener("click", () => handleArrowUpDown("arrowUp"));
+    arrowUp.addEventListener("click", () =>
+      handleArrowUpDown("arrowUp", index)
+    );
     arrowDown.setAttribute("src", "../assets/images/triangle_up.svg");
-    arrowDown.addEventListener("click", () => handleArrowUpDown("arrowDown"));
+    arrowDown.addEventListener("click", () =>
+      handleArrowUpDown("arrowDown", index)
+    );
     editDeleteButtons.append(editButton, deleteButton);
     arrowButtons.append(arrowUp, arrowDown);
     inputDiv.append(inputFieldLabel, inputField);
@@ -142,8 +153,8 @@ var renderForm = (formFieldsArray) => {
   removeAllChildNodes(divForm);
   var divCheckBox = document.createElement("div");
   var divRadioBox = document.createElement("div");
-  formFieldsArray.map((dat) => {
-    commonRenderForm(dat, divForm, divCheckBox, divRadioBox);
+  formFieldsArray.map((dat, index) => {
+    commonRenderForm(dat, divForm, divCheckBox, divRadioBox, index);
   });
 };
 
