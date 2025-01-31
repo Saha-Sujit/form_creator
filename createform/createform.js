@@ -33,6 +33,8 @@ var handleFormNameChange = () => {
   var renderButtonName = document.querySelector(".renderFormButton");
   if (buttonName != "") {
     renderButtonName.style.display = "block";
+    renderButtonName.style.opacity = "0.6";
+    renderButtonName.style.cursor = "not-allowed";
   } else {
     renderButtonName.style.display = "none";
   }

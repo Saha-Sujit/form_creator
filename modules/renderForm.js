@@ -2,7 +2,8 @@
 
 // handle up down arrow clicks to update the form field array
 const handleArrowUpDown = (arrowUpDown, index) => {
-  alert(`${arrowUpDown} clicked and your index is ${index}`);
+  console.log(`${arrowUpDown} clicked and your index is ${index}`);
+  console.log("Form Fields", formFieldsArray);
 };
 
 //function to remove all child nodes inside div
